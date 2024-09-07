@@ -1,0 +1,56 @@
+<?php
+// Define the filename
+ = 'data.txt';
+
+// Handle form submission
+if (['REQUEST_METHOD'] == 'POST') {
+     = isset(['content']) ? ['content'] : '';
+
+    // Create or update the file with new content
+    file_put_contents(, );
+}
+
+// Check if the file exists
+ = file_exists();
+
+if () {
+    // Read the file contents using file_get_contents
+     = file_get_contents();
+
+    // Read the file into an array using file
+     = file();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Handling Example</title>
+</head>
+<body>
+    <h1>File Handling with PHP</h1>
+
+    <!-- Form to update the file -->
+    <form method="post">
+        <label for="content">Enter new content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50"><?php echo  ? htmlspecialchars() : ''; ?></textarea><br>
+        <input type="submit" value="Save Content">
+    </form>
+
+    <?php if (): ?>
+        <h2>File Contents:</h2>
+        <p><?php echo nl2br(htmlspecialchars()); ?></p>
+
+        <h2>File Contents (Array Format):</h2>
+        <ul>
+            <?php foreach ( as ): ?>
+                <li><?php echo htmlspecialchars(); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>The file does not exist. You can create it by submitting the form above.</p>
+    <?php endif; ?>
+</body>
+</html>
